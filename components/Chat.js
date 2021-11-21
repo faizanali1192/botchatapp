@@ -14,7 +14,7 @@ const{id}=route.params;
 
     const sendMessage=(e)=>{
         e.preventDefault();
-        setMessages([...messages,message,"Bot"])
+        setMessages([...messages,message,botMessage[0]])
 
     }
 
@@ -29,7 +29,7 @@ const{id}=route.params;
          
            onPress={()=>navigation.navigate('Chat')}>{name} </Text>
            {messages.map((m)=>{
-               return <Text   style={styles.userMessage} >{m}</Text>
+               return <Text   style={[m=="i am Bot"?  styles.botMessage : styles.userMessage]} >{m}</Text>
            })}
            <TextInput
            style={{ 
@@ -54,6 +54,10 @@ onPress={(e) => {sendMessage(e)}}
 const styles = StyleSheet.create({
     userMessage:{
         border:"2px solid green",
+
+    },
+    botMessage:{
+        border:"2px solid red",
 
     },
     container: {
