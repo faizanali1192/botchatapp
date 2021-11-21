@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import { View, Text,TextInput,Button ,StyleSheet } from 'react-native'
+import { View, Text,TextInput,Button ,StyleSheet, ScrollView } from 'react-native'
 
 export  function Chat({route,navigation}) {
     const [message, setMessage] = useState("")
@@ -7,7 +7,7 @@ export  function Chat({route,navigation}) {
 
 
 
-const{id}=route.params;
+const{id}=route.params; 
     const{name}=route.params; 
 
     const botMessage=["i am Bot"]
@@ -15,60 +15,70 @@ const{id}=route.params;
     const sendMessage=(e)=>{
         e.preventDefault();
         setMessages([...messages,message,botMessage[0]])
-
+        setMessage("");
     }
 
-    // const sendBotMessage=()=>{
-    //     setMessage([...messages,"i am a bot"])
-    // }
+
 
     console.log(message)
     return (
-        <View>
+        <View style={{backgroundColor:"lightgrey", flex:1, paddingLeft:10, paddingRight:10, }} >
+         <ScrollView>
            <Text 
          
            onPress={()=>navigation.navigate('Chat')}>{name} </Text>
-           {messages.map((m)=>{
-               return <Text   style={[m=="i am Bot"?  styles.botMessage : styles.userMessage]} >{m}</Text>
+           {messages.map((m,index)=>{
+               return <Text key={index}  style={[m=="i am Bot"?  styles.botmessage : styles.usermessage]} >{m}</Text>
            })}
+</ScrollView>
+
+
+           <View style={{display:"flex", flexDirection:"row" ,justifyContent:"center" ,marginTop:"auto", display:"inlineBlock"}}>
            <TextInput
            style={{ 
     	   height: 40, 
             borderColor: 'gray', 
             borderWidth: 1,
             placeholderTextColor: 'gray',
+        //    marginTop:"auto",
+           width:"100%",
+           padding:5,
+           
     }}
       onChangeText={message => setMessage(message)}
       value={message}
 	  placeholder="Enter Your Message..."
     />
     <Button 
-title="click me"
+    style={{
+        height: 40, 
+         borderColor: 'gray', 
+         borderWidth: 1,
+         placeholderTextColor: 'gray',
+
+           
+ }}
+title="Send"
 onPress={(e) => {sendMessage(e)}}
 />
+</View>
         </View>
     )
 }
 
 
 const styles = StyleSheet.create({
-    userMessage:{
-        border:"2px solid green",
+
+    usermessage:{
+       color:"green",
+        marginLeft:"auto",
+        fontSize:20
 
     },
-    botMessage:{
-        border:"2px solid red",
-
+    botmessage:{
+       color:"orange",
+       fontSize:20
+       
     },
-    container: {
-      marginTop: 50,
-    },
-    bigBlue: {
-      color: 'blue',
-      fontWeight: 'bold',
-      fontSize: 30,
-    },
-    red: {
-      color: 'red',
-    },
+  
   });

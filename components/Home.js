@@ -10,7 +10,7 @@ const users=[
     return (
         <View>
            {users.map((user)=>{
-             return  <Text onPress={()=>navigation.navigate('Chat',{id:user.id,name:user.name})} >{user.name}</Text>
+             return  <Text key={user.id} onPress={()=>navigation.navigate('Chat',{id:user.id,name:user.name})} >{user.name}</Text>
            })}
         </View>
     )
