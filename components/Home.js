@@ -8,9 +8,9 @@ const users=[
     {id:2,name:"Hassan"}
 ]
     return (
-        <View>
+        <View style={{borderBottom:"1px solid purple"}}>
            {users.map((user)=>{
-             return  <Text key={user.id} onPress={()=>navigation.navigate('Chat',{id:user.id,name:user.name})} >{user.name}</Text>
+             return  <Text key={user.id} style={{fontSize:15, paddingLeft:10, borderTop:"1px solid purple", paddingTop:10, paddingBottom:10}} onPress={()=>navigation.navigate('Chat',{id:user.id,name:user.name})} >{user.name}</Text>
            })}
         </View>
     )

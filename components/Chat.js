@@ -5,8 +5,6 @@ export  function Chat({route,navigation}) {
     const [message, setMessage] = useState("")
     const [messages, setMessages] = useState([])
 
-
-
 const{id}=route.params; 
     const{name}=route.params; 
 
